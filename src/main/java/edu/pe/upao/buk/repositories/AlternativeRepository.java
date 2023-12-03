@@ -1,4 +1,7 @@
 package edu.pe.upao.buk.repositories;
 
-public interface AlternativeRepository {
+import edu.pe.upao.buk.models.Alternative;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface AlternativeRepository extends JpaRepository<Alternative, Long> {
 }

@@ -1,7 +1,6 @@
 package edu.pe.upao.buk.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -11,4 +10,14 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Alternative {
+    @Id
+    @Column(name = "alternative_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long alternativeId;
+    @Column(name = "alternative_text")
+    private String alternativeText;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "question_id_fk")
+    private Question question;
 }

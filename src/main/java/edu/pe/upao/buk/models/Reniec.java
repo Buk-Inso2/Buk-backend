@@ -4,18 +4,20 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "dni")
+@Table(name = "dnis")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class DNI {
+public class Reniec {
     @Id
     @Column(name = "dni_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long dniId;
+    @Column(name = "dni")
+    private String dni;
     @Column(name = "first_name")
-    private String firstName;
+    private String firstNameDNI;
     @Column(name = "last_name")
-    private String lastName;
+    private String lastNameDNI;
 }

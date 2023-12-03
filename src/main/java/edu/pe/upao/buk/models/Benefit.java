@@ -7,20 +7,20 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "responsibilities")
+@Table(name = "benefits")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Responsibility {
+public class Benefit {
     @Id
-    @Column(name = "responsibility_id")
+    @Column(name = "benefit_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long responsibilityId;
-    @Column(name = "responsibility_text")
-    private String responsibilityText;
+    private Long benefitId;
+    @Column(name = "benefit_text")
+    private String benefitText;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "job_id_fk")
+    @JoinColumn(name = "job_id_fk_benefit")
     private Job job;
 }
