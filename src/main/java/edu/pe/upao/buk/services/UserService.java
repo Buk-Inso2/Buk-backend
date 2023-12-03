@@ -7,11 +7,11 @@ import edu.pe.upao.buk.repositories.ReniecRepository;
 import edu.pe.upao.buk.repositories.UserRepository;
 import org.springframework.stereotype.*;
 
+
 @Service
 public class UserService {
     private final UserRepository userRepository;
     private final ReniecRepository reniecRepository;
-
     public UserService(UserRepository userRepository, ReniecRepository reniecRepository) {
         this.userRepository = userRepository;
         this.reniecRepository = reniecRepository;
@@ -47,5 +47,17 @@ public class UserService {
         userRepository.save(user);
 
         return "Registro exitoso";
+    }
+    public void guardarSesionUsuario(User usuario) {
+        // Verificar si el usuario ya está registrado como "logueado"
+        Boolean isLoggedIn = usuario.getIsLoggedIn();
+        if (isLoggedIn == null || !isLoggedIn.booleanValue()) {
+            // Actualizar el estado de la sesión del usuario a "logueado"
+            usuario.setIsLoggedIn(Boolean.TRUE);
+            userRepository.save(usuario);
+            System.out.println("Sesión del usuario " + usuario.getEmail() + " guardada con éxito.");
+        } else {
+            System.out.println("El usuario " + usuario.getEmail() + " ya está logueado.");
+        }
     }
 }
