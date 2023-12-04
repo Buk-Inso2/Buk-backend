@@ -48,16 +48,16 @@ public class UserService {
 
         return "Registro exitoso";
     }
-    public void guardarSesionUsuario(User usuario) {
-        // Verificar si el usuario ya está registrado como "logueado"
-        Boolean isLoggedIn = usuario.getIsLoggedIn();
-        if (isLoggedIn == null || !isLoggedIn.booleanValue()) {
-            // Actualizar el estado de la sesión del usuario a "logueado"
-            usuario.setIsLoggedIn(Boolean.TRUE);
-            userRepository.save(usuario);
-            System.out.println("Sesión del usuario " + usuario.getEmail() + " guardada con éxito.");
-        } else {
-            System.out.println("El usuario " + usuario.getEmail() + " ya está logueado.");
-        }
-    }
+//    public void guardarSesionUsuario(User usuario) {
+//        // Verificar si el usuario ya está registrado como "logueado"
+//        Boolean isLoggedIn = usuario.getIsLoggedIn();
+//        if (isLoggedIn == null || !isLoggedIn.booleanValue()) {
+//            // Actualizar el estado de la sesión del usuario a "logueado"
+//            usuario.setIsLoggedIn(Boolean.TRUE);
+//            userRepository.save(usuario);
+//            System.out.println("Sesión del usuario " + usuario.getEmail() + " guardada con éxito.");
+//        } else {
+//            System.out.println("El usuario " + usuario.getEmail() + " ya está logueado.");
+//        }
+//    }
 }

@@ -33,10 +33,10 @@ public class Base {
     @JoinColumn(name = "announcement_id_fk")
     private Announcement announcement;
 
-    @OneToMany(mappedBy = "base")
+    @OneToMany(mappedBy = "base", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Requirement> requirements;
 
-    @OneToMany(mappedBy = "base")
+    @OneToMany(mappedBy = "base", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Evaluator> evaluators;
 
 

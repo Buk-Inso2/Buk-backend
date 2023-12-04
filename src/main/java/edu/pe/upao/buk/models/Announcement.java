@@ -18,6 +18,9 @@ public class Announcement {
     private int vacancies;
 
     @OneToOne(mappedBy = "announcement")
+    private Job job;
+
+    @OneToOne(mappedBy = "announcement")
     private Form form;
 
     @OneToOne(mappedBy = "announcement")

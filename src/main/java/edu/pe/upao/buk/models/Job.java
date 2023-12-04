@@ -2,6 +2,8 @@ package edu.pe.upao.buk.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.util.List;
 
@@ -11,6 +13,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "alternativeId")
 public class Job {
     @Id
     @Column(name = "job_id")
@@ -23,9 +26,15 @@ public class Job {
     @Column(name = "work_shift")
     private String shift;
 
-    @OneToMany(mappedBy = "job")
+    @OneToOne
+    @JoinColumn(name = "announcement_id_fk_job")
+    private Announcement announcement;
+
+    @OneToMany(mappedBy = "job", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Responsibility> responsibilities;
 
-    @OneToMany(mappedBy = "job")
+    @OneToMany(mappedBy = "job", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Benefit> benefits;
+
+
 }

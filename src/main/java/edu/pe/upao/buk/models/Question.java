@@ -1,10 +1,13 @@
 package edu.pe.upao.buk.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.util.List;
 
@@ -14,6 +17,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "alternativeId")
 public class Question {
     @Id
     @Column(name = "question_id")
@@ -24,8 +28,10 @@ public class Question {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "form_id_fk")
+    @JsonIgnoreProperties("questions")  // Ignora la propiedad 'questions' al serializa
     private Form form;
 
-    @OneToMany(mappedBy = "question")
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties("question")  // Ignora la propiedad 'question' al serializar
     private List<Alternative> alternativeList;
 }
