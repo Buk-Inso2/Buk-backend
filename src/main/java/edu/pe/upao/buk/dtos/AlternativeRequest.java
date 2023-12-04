@@ -13,8 +13,6 @@ public class AlternativeRequest {
     private String alternativeText;
     private int points;
 
-    // Otros campos y getters/setters
-
     public String getAlternativeText() {
         return alternativeText;
     }

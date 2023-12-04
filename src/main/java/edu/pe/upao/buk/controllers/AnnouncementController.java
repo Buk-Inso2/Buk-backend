@@ -21,9 +21,15 @@ public class AnnouncementController {
 
     @PostMapping("/create")
     public ResponseEntity<String> createAnnouncement(@RequestBody CreateAnnouncementRequest createAnnouncementRequest) {
-        // Aquí deberías implementar la lógica para procesar la solicitud y guardar la información en tu base de datos
+        try {
+            // Llamada al servicio para crear el Announcement
+            Announcement announcement = announcementService.createAnnouncement(createAnnouncementRequest);
 
-        // Devuelve una respuesta de éxito si todo va bien
-        return new ResponseEntity<>("Announcement created successfully", HttpStatus.CREATED);
+            // Devuelve una respuesta de éxito si todo va bien
+            return new ResponseEntity<>("Announcement created successfully", HttpStatus.CREATED);
+        } catch (Exception e) {
+            // Manejar la excepción adecuadamente o devolver un mensaje de error según tus necesidades
+            return new ResponseEntity<>("Error creating announcement: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
